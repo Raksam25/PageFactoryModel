@@ -1,0 +1,16 @@
+# IntelliJ IDEA
+.idea/
+.settings/
+*.iml
+
+# Build folders
+/target/
+/test-output/
+/build/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
