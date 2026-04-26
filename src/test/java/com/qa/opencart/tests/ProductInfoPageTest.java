@@ -10,6 +10,12 @@ import org.testng.asserts.SoftAssert;
 
 import com.qa.opencart.base.BaseTest;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
+
 public class ProductInfoPageTest extends BaseTest{
 	
 	
@@ -19,14 +25,22 @@ public class ProductInfoPageTest extends BaseTest{
 	}
 	
 	
+	@Feature("Product")
+	@Story("Product header display")
+	@Severity(SeverityLevel.NORMAL)
+	@Description("This test validates that the product header is displayed correctly.")
 	@Test
 	public void productHeaderTest() {
 		resultsPage = accPage.doSearch("macbook");
 		productInfoPage = resultsPage.selectProduct("MacBook Pro");
-		Assert.assertEquals(productInfoPage.getProductHeader(), "MacBook Pro");
+		Assert.assertEquals(productInfoPage.getProductHeader(), "MacBook Pro", "Product header should match the selected product");
 	}
 		
 	
+	@Feature("Product")
+	@Story("Product information display")
+	@Severity(SeverityLevel.CRITICAL)
+	@Description("This test validates that the product information is displayed correctly.")
 	@Test
 	public void productInfoTest() {
 		
@@ -57,11 +71,15 @@ public class ProductInfoPageTest extends BaseTest{
 	}
 	
 	
+	@Feature("Product")
+	@Story("Product images")
+	@Severity(SeverityLevel.NORMAL)
+	@Description("This test validates the count of product images.")
 	@Test(dataProvider = "getProductImagesCountData")
 	public void productImagesCountTest(String searchKey, String productName, int imagesCount) {
 		resultsPage = accPage.doSearch(searchKey);
 		productInfoPage = resultsPage.selectProduct(productName);
-		Assert.assertEquals(productInfoPage.getProductImagesCount(), imagesCount);
+		Assert.assertEquals(productInfoPage.getProductImagesCount(), imagesCount, "Product images count should match the expected value for " + productName);
 	}
 	
 	

@@ -27,50 +27,58 @@ import io.qameta.allure.Story;
 public class LoginPageTest extends BaseTest {
 
 	@Severity(SeverityLevel.MINOR)
-	@Description("login page title test....")
-	@Feature("Feature 400: title test feature")
+	@Description("This test validates that the login page displays the correct title.")
+	@Feature("Login")
+	@Story("Login page display")
 	@Test
 	public void loginPageTitleTest() {
 		String actTitle = loginPage.getLoginPageTitle();
-		Assert.assertEquals(actTitle, AppConstants.LOGIN_PAGE_TITLE);
+		Assert.assertEquals(actTitle, AppConstants.LOGIN_PAGE_TITLE, "Login page title should match the expected value");
 	}
 
 	@Severity(SeverityLevel.NORMAL)
-	@Description("login page url testing....")
-	@Feature("Feature 401: title test feature")	
+	@Description("This test validates that the login page URL contains the expected fraction.")
+	@Feature("Login")
+	@Story("Login page navigation")
 	@Test()
 	public void loginPageURLTest() {
 		String actURL = loginPage.getLoginPageURL();
-		Assert.assertTrue(actURL.contains(AppConstants.LOGIN_PAGE_FRACTION_URL));
+		Assert.assertTrue(actURL.contains(AppConstants.LOGIN_PAGE_FRACTION_URL), "Login page URL should contain the expected fraction");
 	}
 
 	@Severity(SeverityLevel.CRITICAL)
-	@Description("login page forgot pwd link exist test....")
+	@Description("This test validates that the forgot password link exists on the login page.")
+	@Feature("Login")
+	@Story("Forgot password functionality")
 	@Issue("Bug-123")
 	@Test
 	public void forgotPwdLinkExistTest() {
-		Assert.assertTrue(loginPage.isForgotPwdLinkExist());
+		Assert.assertTrue(loginPage.isForgotPwdLinkExist(), "Forgot password link should exist on the login page");
 	}
 
 	@Severity(SeverityLevel.CRITICAL)
-	@Description("login page logo test....")
+	@Description("This test validates that the logo exists on the login page.")
+	@Feature("Login")
+	@Story("Login page display")
 	@Test
 	public void logoExistTest() {
-		Assert.assertTrue(loginPage.isLogoExist());
+		Assert.assertTrue(loginPage.isLogoExist(), "Logo should exist on the login page");
 	}
 
 	@Severity(SeverityLevel.MINOR)
-	@Description("user is able to login....")
+	@Description("This test validates that a user can successfully log in with valid credentials.")
+	@Feature("Login")
+	@Story("User login")
 	@Test(priority = Integer.MAX_VALUE)
 	public void loginTest() {
 		accPage = loginPage.doLogin(prop.getProperty("username"), prop.getProperty("password"));
-		Assert.assertEquals(accPage.getAccountsPageTitle(), AppConstants.ACCOUNTS_PAGE_TITLE);
+		Assert.assertEquals(accPage.getAccountsPageTitle(), AppConstants.ACCOUNTS_PAGE_TITLE, "Accounts page title should match after login");
 	}
 	
 	
 	@Test(enabled = false)
 	public void naveentest() {
-		System.out.println("WIP");
+		// WIP
 	}
 
 }
